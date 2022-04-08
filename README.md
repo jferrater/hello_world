@@ -1,6 +1,6 @@
 # Scraper Service
 
-## Installing packages
+## Make Python virtualenv and installing packages
 1. `make .venv`
 2. `source .venv/bin/activate`
 
