@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+
+  prometheus:
+    depends_on:
+      - scraper-service
+    build:
+      context: ./prometheus
+      dockerfile: Dockerfile
+    ports:
+      - 9090:9090
+
+  scraper-service:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      FLASK_APP: app
+    ports:
+      - "8080:8080"
+      - "9095:9095"

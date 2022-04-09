@@ -29,3 +29,8 @@ curl --header "Content-Type: application/json" \
 ```bash
 curl localhost:9095/metrics
 ```
+
+## Running the application with a Prometheus Server
+```bash
+docker-compose up
+```
