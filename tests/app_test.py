@@ -1,9 +1,16 @@
 import json
+
 from app import app
 
 
-def test_url_status():
+def test_get_root():
+    with app.test_client() as client:
+        response = client.get('/')
 
+        assert response.status_code == 200
+
+
+def test_post_url_status():
     with app.test_client() as client:
         payload = json.dumps({'url':'https://google.com'})
         response = client.post('/', data=payload, content_type='application/json')
