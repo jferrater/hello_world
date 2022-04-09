@@ -20,3 +20,12 @@ services:
     ports:
       - "8080:8080"
       - "9095:9095"
+
+  request-generator:
+    build:
+      context: ./request_generator
+      dockerfile: Dockerfile
+    depends_on:
+      - scraper-service
+    environment:
+      SCRAPER_SERVICE: "http://scraper-service:8080"

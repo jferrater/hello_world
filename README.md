@@ -29,8 +29,13 @@ curl --header "Content-Type: application/json" \
 ```bash
 curl localhost:9095/metrics
 ```
+## Generating metrics
+A python script is created to regularly request to the Scraper Service. This will populate the `http_get` metric with data
+```bash
+make generate-metrics
+```
 
-## Running the application with a Prometheus Server
+## Running the application with Prometheus Server and request generator
 ```bash
 docker-compose up
 ```

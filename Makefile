@@ -12,6 +12,9 @@ $(VENV): requirements.txt
 	python3 -m venv $(VENV)
 	$(VENV)/bin/pip install -r requirements.txt
 
+pip-upgrade:
+
+
 .PHONY: test
 test:
 	python -m pytest tests/app_test.py
@@ -34,3 +37,7 @@ integration-test: run
 docker-rm:
 	docker stop scraper-service
 	docker rm scraper-service
+
+.PHONY: generate-metrics
+generate-metrics:
+	python request_generator/request_generator.py
