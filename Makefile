@@ -17,3 +17,14 @@ build:
 .PHONY: run
 run: build
 	docker run -dit -p 8080:8080 -p 9095:9095 --name scraper-service scraper-service:$(version)
+
+.PHONY: integration-test
+integration-test: run
+	while ! echo exit | nc localhost 9095; do sleep 5; done && \
+	docker exec -it scraper-service pytest tests/integration/metrics_test.py
+	make docker-rm
+	
+.PHONY: docker-rm
+docker-rm:
+	docker stop scraper-service
+	docker rm scraper-service

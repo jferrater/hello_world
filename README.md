@@ -6,9 +6,10 @@ make .venv
 source .venv/bin/activate
 ```
 
-## Run test
+## Run tests
 ```bash
 make test
+make integration-test
 ```
 
 ## Run the application with Docker
