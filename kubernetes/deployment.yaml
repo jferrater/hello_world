@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper-service
+  labels:
+    app: scraper-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper-service
+  template:
+    metadata:
+      labels:
+        app: scraper-service
+    spec:
+      containers:
+        - name: scraper-service
+          image: jmferrater/scraper-service:0.1.0
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              memory: 512Mi
+          ports:
+            - name: app-port
+              containerPort: 8080
+            - name: metrics-port
+              containerPort: 9050
+          readinessProbe:
+              httpGet: 
+                path: /
+                port: app-port

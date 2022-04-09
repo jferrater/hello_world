@@ -1,4 +1,10 @@
+export SHELL := bash
 version:=0.1.0
+
+
+MINIKUBE_VERSION := v1.25.2
+KUBECTL_VERSION := v1.23.5
+HELM_VERSION := v3.8.1
 
 VENV:=.venv
 $(VENV): requirements.txt
