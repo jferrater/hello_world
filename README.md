@@ -48,7 +48,21 @@ Docker-compose
 --------------
 There is a docker-compose file that can be used to automatically run the Scraper Service together with Prometheus Server and the metrics generator script.
 ```bash
-docker-compose up
+docker-compose up -d
+```
+### Scraper Service PromQL Queries
+The Prometheus server would be available at `http://localhost:9090`. The following PromQL query can be used to get the HTTP GET status code of a given url:
+- `http_get_total` - get all `http_get` metric. There should be five urls with `http_get` counter metrics generated from the metrics generator.
+- `http_get_total{url="https://facebook.com"}` - Get the http_get counter metrics of facebook url.
+- `http_get_total{url="https://phaidra.ai"}` - Get the http_get counter metrics of phaidra url.
+- `http_get_total{url="https://google.com"}` - Get the http_get counter metrics of google url.
+- `http_get_total{url="https://github.com"}` - Get the http_get counter metrics of github url.
+- `http_get_total{url="https://tradingview.com"}` - Get the http_get counter metrics of tradingview url.
+- `http_get_total{url="https://facebook.com", code="200"}` - Get the counter metrics of facebook url with status code of 200
+
+When you are done, run:
+```bash
+docker-compose down
 ```
 
 Local Kubernetes Cluster
