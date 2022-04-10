@@ -13,9 +13,9 @@ start_wsgi_server(int(os.environ.get('PROMETHEUS_PORT', 9095)))
 http_get_metric = Counter('http_get', ' Http GET metric', ['url', 'code'])
 
 
-@app.route('/', methods=['GET'])
+@app.route('/status', methods=['GET'])
 def hello():
-    return 'hello'
+    return 'ok'
 
 
 @app.route('/', methods=['POST'])
