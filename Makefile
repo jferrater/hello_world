@@ -57,6 +57,8 @@ k8s-environment:
 .PHONY: delete-cluster
 delete-cluster:
 	minikube delete || true
+	rm -rf kubernetes/bin
+	rm -rf kubernetes/minikube_home
 
 VENV:=.venv
 $(VENV): requirements.txt
