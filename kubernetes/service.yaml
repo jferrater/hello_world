@@ -8,7 +8,9 @@ spec:
   selector:
     app: scraper-service
   ports:
-  - port: 8080
+  - name: app-port
+    port: 8080
     targetPort: 8080
-  - port: 9050
-    targetPort: 9050
+  - name: metrics-port
+    port: 9095
+    targetPort: 9095

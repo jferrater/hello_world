@@ -22,5 +22,5 @@ spec:
         backend:
           service:
             name: scraper-service
-            ports:
-              number: 9050
+            port:
+              number: 9095

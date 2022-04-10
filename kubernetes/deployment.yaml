@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: scraper-service
-          image: jmferrater/scraper-service:0.1.0
+          image: jmferrater/scraper-service:0.1.1
           resources:
             limits:
               memory: 512Mi
@@ -26,8 +26,8 @@ spec:
             - name: app-port
               containerPort: 8080
             - name: metrics-port
-              containerPort: 9050
+              containerPort: 9095
           readinessProbe:
               httpGet: 
-                path: /
+                path: /status
                 port: app-port
