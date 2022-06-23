@@ -29,8 +29,17 @@ $(KUBECTL): $(TOOLS)
 	curl -L -o $(KUBECTL) https://storage.googleapis.com/kubernetes-release/release/$(KUBECTL_VERSION)/bin/$(uname)/$(arch)/kubectl
 	chmod +x $(KUBECTL)
 
+HELM := $(TOOLS)/helm
+$(HELM): $(TOOLS)
+	rm -rf $(HELM)
+	cd $(TOOLS) && \
+		curl -O https://get.helm.sh/helm-$(HELM_VERSION)-$(uname)-$(arch).tar.gz && \
+			tar zxvf helm-$(HELM_VERSION)-$(uname)-$(arch).tar.gz && \
+				mv $(uname)-$(arch)/helm helm
+	chmod +x $(HELM)
+
 .PHONY: tools
-tools: $(KUBECTL) $(MINIKUBE) 
+tools: $(KUBECTL) $(MINIKUBE) $(HELM)
 
 export PATH := $(shell pwd)/$(TOOLS):$(PATH)
 export MINIKUBE_HOME := $(shell pwd)/kubernetes/minikube_home
